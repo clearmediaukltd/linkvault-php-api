@@ -1,4 +1,4 @@
-Safelinks API
+Linkvau.lt API
 =============
 This file contains a folder named Example with a simple example for you to follow.
 
