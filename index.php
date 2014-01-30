@@ -5,3 +5,10 @@ $file_id = 'IEc2ZTPw';
 
 $api = new LinkvaultApi($api_key);
 echo $api->get_download_url($file_id);
+
+/**
+ * This can be used in your code as follows:
+ * 
+ * $url = $api->get_download_url($file_id);
+ * $link = '<a href="' . $url . '">Link Text</a>';
+ * /
