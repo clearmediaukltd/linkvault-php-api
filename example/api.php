@@ -101,7 +101,24 @@ class LinkvaultApi
 	}	
 
 	// ------------------------------------------------
-
+	
+	/**
+	 * Get download link html
+	 * returns an HTML link to the download URL
+	 * 
+	 * @param string
+	 * @return string
+	 * @access public
+	 * @todo allow users to send their own link text
+	 */
+	 public function get_download_link_html($file_id)
+	 {
+	 	$data = json_decode($this->make_call('get/link/' . $this->api_key . '/' . $file_id));
+		return '<a href="' . $data->link . '">Click to Download</a>';
+	 }
+	 
+	// ------------------------------------------------
+	
 	/**
 	 * Returns a list of files as a PHP array of objects
 	 *
