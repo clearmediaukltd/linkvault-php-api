@@ -33,7 +33,6 @@ class LinkvaultApi
 	 */
 	public function __construct($api_key = '')
 	{
-		// error_reporting(E_ALL);
 		$this->api_key = $api_key;
 		return;
 	}
@@ -49,35 +48,30 @@ class LinkvaultApi
 	 * @access public
 	 * @todo abstract this to allow other methods of accessing the API
 	 */
-	public function make_call($api_endpoint, $options = array())
+	public function make_call($api_endpoint, $postdata = array())
 	{
-		$url = $this->api_url . $api_endpoint;
-		if ( ! isset($options['header'])) {
-			$options['header'] = array();	
-		}	
-
+		error_reporting(E_ALL);
+		$url = $this->api_url . $api_endpoint;	
 		$ch = curl_init();
 		if($this->method != 'get') {
-			curl_setopt( $ch, CURLOPT_POST, 1 );
-			curl_setopt( $ch, CURLOPT_POSTFIELDS, $postdata );
-		}
-		
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+		}		
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'LinkvaultApi');
-		// curl_setopt( $ch, CURLOPT_HTTPHEADER, $options['header'] );
 
 		if($this->debug_level > 0) {
-			curl_setopt($ch, CURLOPT_VERBOSE, true);
-			curl_setopt( $ch, CURLOPT_HEADER, true );
+			curl_setopt($ch, CURLOPT_VERBOSE, TRUE);
+			curl_setopt($ch, CURLOPT_HEADER, TRUE);
 
 			$verbose = fopen('php://temp', 'rw+');
 			curl_setopt($ch, CURLOPT_STDERR, $verbose);
 
 			rewind($verbose);
-			$verboseLog = stream_get_contents($verbose);
+			$verbose_log = stream_get_contents($verbose);
 
-			echo "Verbose information:\n<pre>", htmlspecialchars($verboseLog), "</pre>\n";		
+			echo "Verbose information:\n<pre>", htmlspecialchars($verbose_log), "</pre>\n";		
 		}
 		
 		$res = curl_exec($ch);
@@ -86,6 +80,37 @@ class LinkvaultApi
 	}
 
 	// ------------------------------------------------
+	
+		
+	/**
+	 * allows posting of a url to the site, the link will appear in the dashboard
+	 * returns a file_id which can be used by 
+	 *
+	 * @param
+	 * @return
+	 * @access
+	 */
+	public function post_url($url, $downloads_per_link = 3, $link_expires_after = 0)
+	{
+		$this->method = 'post';
+		$postfields = array(
+								'url_source' => $url,
+								'downloads_per_link' => (int)$downloads_per_link,
+								'link_expires_after' => (int)$link_expires_after,
+							);
+
+		$result = json_decode($this->make_call('add/url/' . $this->api_key, $postfields));
+		$this->method = 'get';
+
+
+		if($result->result == 'success') {
+			return $result->file_id;
+		} else {
+			return $result->reason;
+		}
+	}
+
+	// -------------------------	
 
 	/**
 	 * Returns the secure download URL for a file
@@ -111,11 +136,11 @@ class LinkvaultApi
 	 * @access public
 	 * @todo allow users to send their own link text
 	 */
-	 public function get_download_link_html($file_id)
-	 {
+	public function get_download_link_html($file_id)
+	{
 	 	$data = json_decode($this->make_call('get/link/' . $this->api_key . '/' . $file_id));
 		return '<a href="' . $data->link . '">Click to Download</a>';
-	 }
+	}
 	 
 	// ------------------------------------------------
 
