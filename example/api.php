@@ -20,7 +20,7 @@
  */
 class LinkvaultApi 
 {
-	private $api_url = 'http://linkvau.lt/api/';
+	private $api_url = 'https://linkvau.lt/api/';
 	public $debug_level = 0;
 	public $method = 'get';
 
@@ -59,6 +59,7 @@ class LinkvaultApi
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'LinkvaultApi');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		if($this->debug_level > 0) {
 			curl_setopt($ch, CURLOPT_VERBOSE, TRUE);
