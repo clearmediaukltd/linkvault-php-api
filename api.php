@@ -20,7 +20,7 @@
  */
 class LinkvaultApi 
 {
-	private $api_url = 'http://linkvau.lt/api/';
+	private $api_url = 'http://dev.linkvau.lt/api/';
 	public $debug_level = 0;
 	public $method = 'get';
 
@@ -50,7 +50,6 @@ class LinkvaultApi
 	 */
 	public function make_call($api_endpoint, $postdata = array())
 	{
-		error_reporting(E_ALL);
 		$url = $this->api_url . $api_endpoint;	
 		$ch = curl_init();
 		if($this->method != 'get') {
@@ -102,12 +101,7 @@ class LinkvaultApi
 		$result = json_decode($this->make_call('add/url/' . $this->api_key, $postfields));
 		$this->method = 'get';
 
-
-		if($result->result == 'success') {
-			return $result->file_id;
-		} else {
-			return $result->reason;
-		}
+		return $result;
 	}
 
 	// -------------------------	
