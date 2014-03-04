@@ -20,7 +20,7 @@
  */
 class LinkvaultApi 
 {
-	private $api_url = 'http://dev.linkvau.lt/api/';
+	private $api_url = 'http://linkvau.lt/api/';
 	public $debug_level = 0;
 	public $method = 'get';
 
