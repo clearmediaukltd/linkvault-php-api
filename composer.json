@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Clearmediaukltd\\linkvault" : "src"
+            "Clearmediaukltd\\Linkvault" : "src"
         }
     }
 }
