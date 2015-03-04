@@ -1,4 +1,5 @@
 <?php
+namespace Clearmediaukltd\Linkvault;
 /**
  * Linkvault a web app for providing secure download links
  *
@@ -11,9 +12,9 @@
  * @filesource
  */
 /**
- * Linkvalt\Api
+ * Linkvault\Api
  *
- * @package		Linkvault
+ * @package		Safelinks
  * @category	API Class
  * @author		Clear Media UK Ltd Dev Team
  * @link		http://linkvau.lt/
@@ -37,8 +38,6 @@ class LinkvaultApi
 		return;
 	}
 
-	// ------------------------------------------------
-
 	/**
 	 * Makes the API calls using cURL
 	 *
@@ -48,7 +47,7 @@ class LinkvaultApi
 	 * @access public
 	 * @todo abstract this to allow other methods of accessing the API
 	 */
-	public function make_call($api_endpoint, $postdata = array())
+	public function makeCall($api_endpoint, $postdata = array())
 	{
 		$url = $this->api_url . $api_endpoint;	
 		$ch = curl_init();
@@ -79,9 +78,6 @@ class LinkvaultApi
 		return $res;
 	}
 
-	// ------------------------------------------------
-	
-		
 	/**
 	 * allows posting of a url to the site, the link will appear in the dashboard
 	 * returns a file_id which can be used by 
@@ -90,7 +86,7 @@ class LinkvaultApi
 	 * @return
 	 * @access
 	 */
-	public function post_url($url, $downloads_per_link = 3, $link_expires_after = 0)
+	public function postUrl($url, $downloads_per_link = 3, $link_expires_after = 0)
 	{
 		$this->method = 'post';
 		$postfields = array(
@@ -99,13 +95,11 @@ class LinkvaultApi
 								'link_expires_after' => (int)$link_expires_after,
 							);
 
-		$result = json_decode($this->make_call('add/url/' . $this->api_key, $postfields));
+		$result = json_decode($this->makeCall('add/url/' . $this->api_key, $postfields));
 		$this->method = 'get';
 
 		return $result;
 	}
-
-	// -------------------------	
 
 	/**
 	 * Returns the secure download URL for a file
@@ -114,14 +108,12 @@ class LinkvaultApi
 	 * @return string
 	 * @access public
 	 */
-	public function get_download_url($file_id)
+	public function getDownloadUrl($file_id)
 	{
-		$data = json_decode($this->make_call('get/link/' . $this->api_key . '/' . $file_id));
+		$data = json_decode($this->makeCall('get/link/' . $this->api_key . '/' . $file_id));
 		return $data->link;
 	}	
 
-	// ------------------------------------------------
-	
 	/**
 	 * Get download link html
 	 * returns an HTML link to the download URL
@@ -131,14 +123,12 @@ class LinkvaultApi
 	 * @access public
 	 * @todo allow users to send their own link text
 	 */
-	public function get_download_link_html($file_id)
+	public function getDownloadLinkHtml($file_id)
 	{
-	 	$data = json_decode($this->make_call('get/link/' . $this->api_key . '/' . $file_id));
+	 	$data = json_decode($this->makeCall('get/link/' . $this->api_key . '/' . $file_id));
 		return '<a href="' . $data->link . '">Click to Download</a>';
 	}
 	 
-	// ------------------------------------------------
-
 	/**
 	 * Returns a list of files as a PHP array of objects
 	 *
@@ -146,15 +136,10 @@ class LinkvaultApi
 	 * @return array
 	 * @access public
 	 */
-	public function get_files()
+	public function getFiles()
 	{
-		$data = json_decode($this->make_call('get/files/' . $this->api_key));
+		$data = json_decode($this->makeCall('get/files/' . $this->api_key));
 		return $data;
 	}
 
-	// ------------------------------------------------
-
 }
-
-/* End of file: api.php */
-/* Location: */

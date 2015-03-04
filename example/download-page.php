@@ -1,5 +1,6 @@
 <?php    
 // Include the linkvault API
+// would be autoloaded by composer
 include_once('./api.php');    
 
 // Grab the user input from the form
@@ -17,12 +18,11 @@ function save_user_details($name, $email) {
 // we will call the linkvau.lt api and get a secure
 // download link to display to our user
 if(save_user_details($name, $email) == TRUE) {
-	$api = new LinkvaultApi('56dd703295d9f18cd74140bf6c1a7f8cfaa72200');
-	$link_url = $api->get_download_url('IEc2ZTPw');
+	$api = new \Clearmediaukltd\Linkvault\LinkvaultApi('98acc3cb401bd03aa5253a56ae25f73548b5c44c');
+	$link_url = $api->getDownloadUrl('6LWH69q6');
 	if($link_url != '') {
 		echo '<a href="' . $link_url . '">Click here to download the file</a>';
 	} else {
 		echo 'There was a problem';
 	}
 }
-?>
