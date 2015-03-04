@@ -15,4 +15,4 @@ A PHP library for interacting with the linkvau.lt API
 License
 =======
 
-The Linkvault PHP Api is open-sourced software licensed under the MIT license
+The Linkvault PHP Api is open-sourced software licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>
