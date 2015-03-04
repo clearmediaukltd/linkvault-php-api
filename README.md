@@ -11,3 +11,8 @@ linkvault-php-api
 =================
 
 A PHP library for interacting with the linkvau.lt API
+
+License
+=======
+
+The Linkvault PHP Api is open-sourced software licensed under the MIT license
