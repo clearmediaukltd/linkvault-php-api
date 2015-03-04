@@ -3,13 +3,13 @@
 include_once('./api.php');    
 
 // Grab the user input from the form
+// this example is quite contrived, remember to secure your code properly
 $name = $_POST['name'];
 $email = $_POST['email'];
 
 function save_user_details($name, $email) {
-// Save the user details to a database here
-
-return TRUE;
+	// Save the user details to a database here
+	return TRUE;
 }
 
 // What we are doing here is calling the save
