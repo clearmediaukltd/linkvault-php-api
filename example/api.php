@@ -1,6 +1,6 @@
 <?php
 /**
- * Safelinks a web app for providing secure download links
+ * Linkvault a web app for providing secure download links
  *
  * @package		ClearMedia
  * @author		Clear Media UK Ltd Dev Team
@@ -11,9 +11,9 @@
  * @filesource
  */
 /**
- * Safelinks\Api
+ * Linkvalt\Api
  *
- * @package		Safelinks
+ * @package		Linkvault
  * @category	API Class
  * @author		Clear Media UK Ltd Dev Team
  * @link		http://linkvau.lt/
