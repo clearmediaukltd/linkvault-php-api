@@ -1,3 +1,5 @@
+build status: [![Build Status](https://travis-ci.org/clearmediaukltd/linkvault-php-api.svg)](https://travis-ci.org/clearmediaukltd/linkvault-php-api)
+
 Linkvau.lt API
 =============
 This file contains a folder named example with a simple example for you to follow.
