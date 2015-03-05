@@ -1,7 +1,7 @@
 <?php    
 // Include the linkvault API
 // would be autoloaded by composer
-include_once('./api.php');    
+include_once('./LinkvaultApi.php');    
 
 // Grab the user input from the form
 // this example is quite contrived, remember to secure your code properly
