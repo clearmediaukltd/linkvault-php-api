@@ -1,4 +1,4 @@
-build status: [![Build Status](https://travis-ci.org/clearmediaukltd/linkvault-php-api.svg)](https://travis-ci.org/clearmediaukltd/linkvault-php-api)
+[![Build Status](https://travis-ci.org/clearmediaukltd/linkvault-php-api.svg)](https://travis-ci.org/clearmediaukltd/linkvault-php-api)
 
 Linkvau.lt API
 =============
