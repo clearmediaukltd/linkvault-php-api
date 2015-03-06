@@ -8,16 +8,9 @@
          forceCoversAnnotation="false"
          processIsolation="false"
          bootstrap="vendor/autoload.php">
-    <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-        <log type="coverage-php" target="build/logs/coverage.cov"/>
-        <log type="coverage-text" target="build/logs/coverage.txt" showUncoveredFiles="false"/>
-        <log type="coverage-html" target="test/reports/coverage/" showUncoveredFiles="true"/>
-        <log type="junit" target="test/reports/junit.xml" logIncompleteSkipped="false"/>
-    </logging>
     <testsuites>
         <testsuite>
-            <directory>test/</directory>
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
     <filter>

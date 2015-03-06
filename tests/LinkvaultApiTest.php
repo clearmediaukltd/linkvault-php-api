@@ -1,7 +1,5 @@
 <?php
-namespace Clearmediaukltd\Linkvault;
-
-
+use Clearmediaukltd\Linkvault;
 
 
 class LinkvaultApiTest extends PHPUnit_Framework_TestCase
