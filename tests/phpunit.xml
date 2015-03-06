@@ -4,7 +4,7 @@
          bootstrap="./bootstrap.php"
          verbose="true">
   <testsuites>
-    <testsuite name="php-token-stream">
+    <testsuite name="linkvault-php-api">
       <directory suffix=".php">./</directory>
     </testsuite>
   </testsuites>
