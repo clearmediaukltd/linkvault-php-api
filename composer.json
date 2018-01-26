@@ -1,7 +1,7 @@
 {
     "name": "clearmediaukltd/linkvault-php-api",
     "description": "An API for automatically creating single-use download links for digital goods.",
-    "license": "mit",
+    "license": "MIT",
     "authors": [
         {
             "name": "Chris Cook",
